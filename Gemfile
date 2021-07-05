@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# Flexible authentication solution for Rails with Warden
+gem 'devise', '~> 4.2'
+
 # Routines we use in containerized apps
 gem 'on_container', '0.0.14'
 

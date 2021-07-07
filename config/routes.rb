@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
-  root to: 'home#show'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+
+  devise_scope :user do
+    root to: 'devise/sessions#new'
+  end
+
+  authenticated :user do
+    namespace :arrows do
+      root to: 'home#show'
+    end
+  end
 end

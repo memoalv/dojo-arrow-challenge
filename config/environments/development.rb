@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -38,6 +38,8 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -62,7 +64,7 @@ Rails.application.configure do
   config.assets.quiet = true
 
   config.web_console.whitelisted_ips = ['172.16.0.0/12', '192.168.0.0/16']
-        
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

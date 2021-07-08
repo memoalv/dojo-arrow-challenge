@@ -1,0 +1,9 @@
+<nav class="navbar sticky-top navbar-light vibrant-background">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="/arrows">Arrow challenge</a>
+    <span>
+      <%= link_to "Edit profile", edit_user_registration_path, class: "link-light me-2" %>
+      <%= link_to "Sign out", destroy_user_session_path, method: 'delete', class: "link-light" %>
+    </span>
+  </div>
+</nav>

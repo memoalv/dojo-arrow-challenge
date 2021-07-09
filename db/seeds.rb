@@ -5,3 +5,23 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+icalier_1 = User.create(
+  name: 'Icalier 1',
+  email: 'icalier_1@icalialabs.com',
+  password: '123456'
+)
+
+icalier_2 = User.create(
+  name: 'Icalier 2',
+  email: 'icalier_2@icalialabs.com',
+  password: '123456'
+)
+
+10.times do |i|
+  Arrow.create(
+    received_by_user_id: icalier_1.id,
+    content: "This is a seeded arrow #{i}",
+    sent_by_user_id: icalier_2.id
+  )
+end

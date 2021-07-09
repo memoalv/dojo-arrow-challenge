@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'associations' do
-    it { should have_many(:sent_by).with_foreign_key('sent_by_user_id') }
-    it { should have_many(:received_by).with_foreign_key('received_by_user_id') }
+    it { should have_many(:sent_arrows).with_foreign_key('from_user_id') }
+    it { should have_many(:received_arrows).with_foreign_key('to_user_id') }
   end
 end

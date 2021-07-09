@@ -5,3 +5,4 @@ FactoryBot.define do
     sent_by_user_id factory: :user
   end
 end
+

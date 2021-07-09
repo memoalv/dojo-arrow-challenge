@@ -11,4 +11,9 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:email) }
     it { should allow_value("test@email.com").for(:email) }
   end
+
+  describe 'associations' do
+    it { should have_many(:sent_by).with_foreign_key('sent_by_user_id') }
+    it { should have_many(:received_by).with_foreign_key('received_by_user_id') }
+  end
 end

@@ -1,4 +1,5 @@
 {
+  "git.enableCommitSigning": true,
   "editor.formatOnSave": false,
   "files.insertFinalNewline": true,
   "files.exclude": {

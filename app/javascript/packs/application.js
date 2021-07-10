@@ -17,3 +17,4 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import "controllers"
+import "./bootstrap_js_files"

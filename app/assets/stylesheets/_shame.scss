@@ -1,0 +1,30 @@
+
+$element-spacing: 16px;
+$dimmed-background-color: #eff6f8;
+
+.dimmed-background-color {
+  background-color: $dimmed-background-color;
+}
+
+.arrows-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: $element-spacing;
+  column-gap: $element-spacing;
+
+  margin-top: $element-spacing * 2;
+}
+
+.icalier-info {
+  margin-top: $element-spacing * 2;
+}
+
+.big-avatar {
+  height: 100px;
+  width: 100px;
+}
+
+.small-avatar {
+  height: 50px;
+  width: 50px;
+}

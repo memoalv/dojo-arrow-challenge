@@ -1,0 +1,25 @@
+<header class="icalier-info p-5 bg-white rounded">
+  <div class="d-flex">
+    <%= user_avatar current_user, class: 'big-avatar avatar-img rounded-circle' %>
+    <div class="ms-4">
+      <h2><%= current_user.name %></h2>
+      <h3 class="text-warning"><%= current_user.points %> points</h3>
+      <p class="btn btn-primary">Create arrow</p>
+    </div>
+  </div>
+</header>
+<section class="arrows-grid">
+  <% current_user.received_arrows.order(created_at: :desc).each do |arrow| %>
+    <div class="bg-white rounded">
+      <main class="p-3 d-flex justify-content-between">
+        <p>
+          <span class="text-info">DATE:</span>
+          <%= l arrow.created_at, format: :short %>
+        </p>
+        <%= user_avatar arrow.from_user, class: 'small-avatar avatar-img rounded-circle' %>
+      </main>
+      <footer class="bg-warning">
+      </footer>
+    </div>
+  <% end %>
+</section>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   authenticated :user do
     namespace :arrows do
-      root to: 'arrows#show'
+      root to: 'arrows#index'
     end
   end
 end

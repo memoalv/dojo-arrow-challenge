@@ -5,10 +5,6 @@
       <h2><%= current_user.name %></h2>
       <h3 class="text-warning"><%= current_user.points %> points</h3>
       <p class="btn btn-primary">Create arrow</p>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-      </button>
-
     </div>
   </div>
 </header>
@@ -22,29 +18,41 @@
         </p>
         <%= user_avatar arrow.from_user, class: 'small-avatar avatar-img rounded-circle' %>
       </main>
-      <footer class="bg-warning">
+      <footer>
+        <div class="accordion accordion-flush" id="<%= "arrowAccordion-#{arrow.id}" %>">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="<%= "arrowAccordionHeading-#{arrow.id}" %>">
+              <button 
+                class="accordion-button collapsed bg-warning" 
+                type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#<%= "arrowCollapse-#{arrow.id}" %>" 
+                aria-expanded="false" 
+                aria-controls="<%= "arrowCollapse-#{arrow.id}" %>"
+              >
+                More details
+              </button>
+            </h2>
+            <div 
+              id="<%= "arrowCollapse-#{arrow.id}" %>" 
+              class="accordion-collapse collapse" 
+              aria-labelledby="<%= "arrowAccordionHeading-#{arrow.id}" %>" 
+              data-bs-parent="#<%= "arrowAccordion-#{arrow.id}" %>"
+            >
+              <div class="accordion-body">
+                <p>
+                  <span class="text-info">BY WHO:</span>
+                  <%= arrow.from_user.name %>
+                </p>
+                <div>
+                  <span class="text-info">WHY:</span>
+                  <p><%= arrow.content %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   <% end %>
 </section>
-
-<!-- Button trigger modal -->
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>

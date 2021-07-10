@@ -14,10 +14,22 @@ RSpec.describe 'Arrows list', type: :system do
   end
 
   scenario 'displays a received arrow correctly' do
-    user_2.sent_arrows.create(to_user_id: user.id, content: "test_arrow", created_at: "2021-06-09 22:06:16.109513000 +0000")
+    user_2.sent_arrows.create(to_user_id: user.id, content: 'test_arrow',
+                              created_at: '2021-06-09 22:06:16.109513000 +0000')
 
     visit arrows_root_path
 
-    expect(page).to have_content("DATE: 09 Jun 22:06")
+    expect(page).to have_content('DATE: 09 Jun 22:06')
+  end
+
+  scenario "displays an arrow's details correctly" do
+    user_2.sent_arrows.create(to_user_id: user.id, content: 'test_arrow',
+                              created_at: '2021-06-09 22:06:16.109513000 +0000')
+
+    visit arrows_root_path
+    click_on 'More details'
+
+    expect(page).to have_content('Test user 2')
+    expect(page).to have_content('test_arrow')
   end
 end

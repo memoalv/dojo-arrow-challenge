@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :received_arrows, class_name: 'Arrow', foreign_key: 'to_user_id'
 
   validates :name, presence: true
+
+  def points
+    sent_arrows.size + received_arrows.size
+  end
 end

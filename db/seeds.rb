@@ -20,8 +20,8 @@ icalier_2 = User.create(
 
 10.times do |i|
   Arrow.create(
-    received_by_user_id: icalier_1.id,
+    to_user_id: icalier_1.id,
     content: "This is a seeded arrow #{i}",
-    sent_by_user_id: icalier_2.id
+    from_user_id: icalier_2.id
   )
 end

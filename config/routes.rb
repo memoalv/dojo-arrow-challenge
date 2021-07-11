@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   authenticated :user do
     namespace :arrows do
       root to: 'arrows#index'
+      post '/', to: 'arrows#create'
     end
   end
 end

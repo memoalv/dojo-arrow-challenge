@@ -10,9 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    welcome_email
+  end
 
   # GET /resource/edit
   # def edit
@@ -46,6 +47,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+  end
+
+  def welcome_email
+    UserMailer.welcome_email(current_user).deliver
   end
 
   # The path used after sign up.

@@ -21,9 +21,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    updated_account_email
+  end
 
   # DELETE /resource
   # def destroy
@@ -50,7 +51,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def welcome_email
-    UserMailer.welcome_email(current_user).deliver
+    UserMailer.with(user: current_user).welcome_email.deliver_later
+  end
+
+  def updated_account_email
+    UserMailer.with(user: current_user).updated_account_email.deliver_later
   end
 
   # The path used after sign up.

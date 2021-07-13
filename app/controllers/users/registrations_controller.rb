@@ -10,9 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    send_welcome_email
+  end
 
   # GET /resource/edit
   # def edit
@@ -20,9 +21,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    send_updated_account_email
+  end
 
   # DELETE /resource
   # def destroy
@@ -46,6 +48,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+  end
+
+  def send_welcome_email
+    UserMailer.with(user: current_user).welcome_email.deliver_later
+  end
+
+  def send_updated_account_email
+    UserMailer.with(user: current_user).updated_account_email.deliver_later
   end
 
   # The path used after sign up.

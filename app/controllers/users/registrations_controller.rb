@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    welcome_email
+    send_welcome_email
   end
 
   # GET /resource/edit
@@ -23,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   def update
     super
-    updated_account_email
+    send_updated_account_email
   end
 
   # DELETE /resource
@@ -50,11 +50,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
-  def welcome_email
+  def send_welcome_email
     UserMailer.with(user: current_user).welcome_email.deliver_later
   end
 
-  def updated_account_email
+  def send_updated_account_email
     UserMailer.with(user: current_user).updated_account_email.deliver_later
   end
 

@@ -9,13 +9,22 @@ RSpec.describe Arrow, type: :model do
   it { is_expected.to be_valid }
 
   describe 'validations' do
-    it { should validate_presence_of(:from_user_id) }
     it { should validate_presence_of(:content) }
-    it { should validate_presence_of(:to_user_id) }
   end
 
   describe 'associations' do
-    it { should belong_to(:to_user).with_foreign_key('to_user_id') }
-    it { should belong_to(:from_user).with_foreign_key('from_user_id') }
+    it { should belong_to(:to_user) }
+    it { should belong_to(:from_user) }
+  end
+
+  describe 'scopes' do
+    it 'Orders arrows in descending order by created_at date' do
+      create(:arrow, from_user_id: sent_by.id, to_user_id: received_by.id, content: 'past_arrow',
+                     created_at: '2021-05-09 22:06:16.109513000 +0000')
+      create(:arrow, from_user_id: sent_by.id, to_user_id: received_by.id, content: 'recent_arrow',
+                     created_at: '2021-06-09 22:06:16.109513000 +0000')
+
+      expect(Arrow.descending[0].content).to eq 'recent_arrow'
+    end
   end
 end

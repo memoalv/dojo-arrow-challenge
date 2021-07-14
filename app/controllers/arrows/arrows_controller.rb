@@ -3,7 +3,7 @@ module Arrows
     def show; end
 
     def create
-      @arrow = Arrow.new(arrow_params)
+      @arrow = current_user.sent_arrows.build(arrow_params)
 
       if @arrow.save
         redirect_to arrows_root_path, notice: 'Arrow sent successfully'
@@ -15,7 +15,7 @@ module Arrows
     private
 
     def arrow_params
-      params.require(:arrow).permit(:to_user_id, :content, :from_user_id)
+      params.require(:arrow).permit(:to_user_id, :content)
     end
   end
 end

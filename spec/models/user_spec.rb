@@ -19,6 +19,12 @@ RSpec.describe User, type: :model do
     it { should have_many(:received_arrows).with_foreign_key('to_user_id') }
   end
 
+  describe '.exclude_user' do
+    it 'excludes a certain user' do
+      expect(User.exclude_user(user)).not_to include(user)
+    end
+  end
+
   describe 'A user has no points' do
     it 'when he has not sent or received arrows' do
       expect(user.points).to eql 0

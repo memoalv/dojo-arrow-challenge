@@ -8,7 +8,11 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :exclude_user, ->(user) { where.not(id: user.id) }
+  # scope :points, -> { sent_arrows.or(received_arrows).size }
+
   def points
-    sent_arrows.size + received_arrows.size
+    # SELECT COUNT(*) FROM "arrows" WHERE ("arrows"."from_user_id" = $1 OR "arrows"."to_user_id" = $2)
+    sent_arrows.or(received_arrows).size
   end
 end

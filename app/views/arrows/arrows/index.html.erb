@@ -11,8 +11,7 @@
   </div>
 </header>
 <section class="arrows-grid">
-  <%# la vista no debe hacer queries, meter a scope %>
-  <% current_user.received_arrows.order(created_at: :desc).each do |arrow| %>
+  <% current_user.received_arrows.descending.each do |arrow| %>
     <div class="bg-white rounded">
       <main class="p-3 d-flex justify-content-between">
         <p>
@@ -72,8 +71,7 @@
         <div class="modal-body">
           <div class="form-group">
             <%= f.label :to_user_id, 'For who?' , class: 'form-label' %>
-            <%# No queries en la vista, igual falta descartar al current user %>
-            <%= f.collection_select :to_user_id, User.all, :id, :name,
+            <%= f.collection_select :to_user_id, User.exclude_user(current_user), :id, :name,
                                   { :prompt => 'Please select an icalier'}, 
                                   class: 'form-control' %>
           </div>

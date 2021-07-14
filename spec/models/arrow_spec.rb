@@ -9,13 +9,11 @@ RSpec.describe Arrow, type: :model do
   it { is_expected.to be_valid }
 
   describe 'validations' do
-    it { should validate_presence_of(:from_user_id) }
     it { should validate_presence_of(:content) }
-    it { should validate_presence_of(:to_user_id) }
   end
 
   describe 'associations' do
-    it { should belong_to(:to_user).with_foreign_key('to_user_id') }
-    it { should belong_to(:from_user).with_foreign_key('from_user_id') }
+    it { should belong_to(:to_user) }
+    it { should belong_to(:from_user) }
   end
 end

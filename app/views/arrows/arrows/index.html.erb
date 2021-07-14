@@ -11,6 +11,7 @@
   </div>
 </header>
 <section class="arrows-grid">
+  <%# la vista no debe hacer queries, meter a scope %>
   <% current_user.received_arrows.order(created_at: :desc).each do |arrow| %>
     <div class="bg-white rounded">
       <main class="p-3 d-flex justify-content-between">
@@ -67,11 +68,11 @@
         <h5 class="modal-title" id="createArrowModalLabel">Create arrow</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <%= form_with model: Arrow.new do |f| %>
+      <%= form_with model: current_user.sent_arrows.build do |f| %>
         <div class="modal-body">
-          <%= f.hidden_field :from_user_id, value: current_user.id %>
           <div class="form-group">
             <%= f.label :to_user_id, 'For who?' , class: 'form-label' %>
+            <%# No queries en la vista, igual falta descartar al current user %>
             <%= f.collection_select :to_user_id, User.all, :id, :name,
                                   { :prompt => 'Please select an icalier'}, 
                                   class: 'form-control' %>

@@ -11,54 +11,8 @@
   </div>
 </header>
 <section class="arrows-grid">
-  <% current_user.received_arrows.descending.each do |arrow| %>
-    <div class="bg-white rounded">
-      <main class="p-3 d-flex justify-content-between">
-        <p>
-          <span class="text-info">DATE:</span>
-          <%= l arrow.created_at, format: :short %>
-        </p>
-        <%= user_avatar arrow.from_user, class: 'small-avatar avatar-img rounded-circle' %>
-      </main>
-      <footer>
-        <div class="accordion accordion-flush" id="<%= "arrowAccordion-#{arrow.id}" %>">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="<%= "arrowAccordionHeading-#{arrow.id}" %>">
-              <button 
-                class="accordion-button collapsed bg-warning" 
-                type="button" 
-                data-bs-toggle="collapse" 
-                data-bs-target="#<%= "arrowCollapse-#{arrow.id}" %>" 
-                aria-expanded="false" 
-                aria-controls="<%= "arrowCollapse-#{arrow.id}" %>"
-              >
-                More details
-              </button>
-            </h2>
-            <div 
-              id="<%= "arrowCollapse-#{arrow.id}" %>" 
-              class="accordion-collapse collapse" 
-              aria-labelledby="<%= "arrowAccordionHeading-#{arrow.id}" %>" 
-              data-bs-parent="#<%= "arrowAccordion-#{arrow.id}" %>"
-            >
-              <div class="accordion-body">
-                <p>
-                  <span class="text-info">BY WHO:</span>
-                  <%= arrow.from_user.name %>
-                </p>
-                <div>
-                  <span class="text-info">WHY:</span>
-                  <p><%= arrow.content %></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  <% end %>
+  <%= render partial: "arrows/arrows/arrow", collection: @received_arrows %>
 </section>
-
 <!-- Modal -->
 <div class="modal fade" id="createArrowModal" tabindex="-1" aria-labelledby="createArrowModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">

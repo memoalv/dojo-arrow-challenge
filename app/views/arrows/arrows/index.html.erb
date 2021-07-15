@@ -21,25 +21,25 @@
         <%= user_avatar arrow.from_user, class: 'small-avatar avatar-img rounded-circle' %>
       </main>
       <footer>
-        <div class="accordion accordion-flush" id="<%= "arrowAccordion-#{arrow.id}" %>">
+        <div class="accordion accordion-flush" id="<%= "arrowAccordion-#{dom_id(arrow)}" %>">
           <div class="accordion-item">
-            <h2 class="accordion-header" id="<%= "arrowAccordionHeading-#{arrow.id}" %>">
+            <h2 class="accordion-header" id="<%= "arrowAccordionHeading-#{dom_id(arrow)}" %>">
               <button 
                 class="accordion-button collapsed bg-warning" 
                 type="button" 
                 data-bs-toggle="collapse" 
-                data-bs-target="#<%= "arrowCollapse-#{arrow.id}" %>" 
+                data-bs-target="#<%= "arrowCollapse-#{dom_id(arrow)}" %>" 
                 aria-expanded="false" 
-                aria-controls="<%= "arrowCollapse-#{arrow.id}" %>"
+                aria-controls="<%= "arrowCollapse-#{dom_id(arrow)}" %>"
               >
                 More details
               </button>
             </h2>
             <div 
-              id="<%= "arrowCollapse-#{arrow.id}" %>" 
+              id="<%= "arrowCollapse-#{dom_id(arrow)}" %>" 
               class="accordion-collapse collapse" 
-              aria-labelledby="<%= "arrowAccordionHeading-#{arrow.id}" %>" 
-              data-bs-parent="#<%= "arrowAccordion-#{arrow.id}" %>"
+              aria-labelledby="<%= "arrowAccordionHeading-#{dom_id(arrow)}" %>" 
+              data-bs-parent="#<%= "arrowAccordion-#{dom_id(arrow)}" %>"
             >
               <div class="accordion-body">
                 <p>

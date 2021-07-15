@@ -36,6 +36,9 @@ gem 'figaro', '~> 1.2'
 # Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.2'
 
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
+
 # Routines we use in containerized apps
 gem 'on_container', '0.0.14'
 

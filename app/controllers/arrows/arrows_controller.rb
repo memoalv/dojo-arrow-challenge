@@ -3,8 +3,6 @@ module Arrows
     def index
       @received_arrows = current_user.received_arrows.descending
     end
-    
-    def show; end
 
     def create
       @arrow = current_user.sent_arrows.build(arrow_params)

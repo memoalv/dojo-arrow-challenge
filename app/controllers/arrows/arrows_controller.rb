@@ -1,5 +1,9 @@
 module Arrows
   class ArrowsController < Arrows::BaseController
+    def index
+      @received_arrows = current_user.received_arrows.descending
+    end
+    
     def show; end
 
     def create

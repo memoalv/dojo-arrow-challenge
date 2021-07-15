@@ -11,12 +11,7 @@
   <body class="h-100 dimmed-background-color">
     <%= render 'shared/navbar' %>
     <main class="container">
-      <% if notice.present? %>
-        <p class="notice"><%= notice %></p>
-      <% end %>
-      <% if alert.present? %>
-        <p class="alert"><%= alert %></p>
-      <%end%>
+      <%= render "shared/alerts" %>
       <%= yield %>
     </main>
   </body>

@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'faker'
 
 RSpec.describe User, type: :model do
   subject { build(:user) }
@@ -47,6 +48,20 @@ RSpec.describe User, type: :model do
       user_2.sent_arrows.create(to_user_id: user.id, content: 'test arrow')
 
       expect(user.points).to eql 2
+    end
+  end
+
+  describe '#from_omniauth' do
+    it 'creates a new account for an unregistered user' do
+      oauth_user_data = JSON.parse(Faker::Omniauth.github.to_json, object_class: OpenStruct)
+
+      user = User.from_omniauth(oauth_user_data)
+      
+      expect(user.persisted?).to eql true
+      expect(user.provider).to eql oauth_user_data.provider
+      expect(user.uid).to eql oauth_user_data.uid
+      expect(user.name).to eql oauth_user_data.info.nickname
+      expect(user.email).to eql oauth_user_data.info.email
     end
   end
 end

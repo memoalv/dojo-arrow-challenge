@@ -6,8 +6,8 @@ RSpec.describe 'New user session', type: :system do
   context 'with correct credentials' do
     scenario 'should be successful' do
       visit new_user_session_path
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: 'crazy_pwd'
+      fill_in 'E-MAIL', with: user.email
+      fill_in 'PASSWORD', with: 'crazy_pwd'
       click_on 'Log in'
 
       expect(page).to have_content('Sign out')
@@ -17,17 +17,17 @@ RSpec.describe 'New user session', type: :system do
   context 'with incorrect credentials' do
     scenario 'should be unsuccessful' do
       visit new_user_session_path
-      fill_in 'user_email', with: user.email
-      fill_in 'user_password', with: 'wrong_password'
+      fill_in 'E-MAIL', with: user.email
+      fill_in 'PASSWORD', with: 'wrong_password'
       click_on 'Log in'
 
-      expect(page).to have_content('Log in')
+      expect(page).to have_content('Invalid Email or password.')
     end
   end
 
   scenario 'omniauth link for github should be present' do
     visit new_user_session_path
 
-    expect(page).to have_content('Sign in with GitHub')
+    expect(page).to have_link(nil, href: '/users/auth/github')
   end
 end

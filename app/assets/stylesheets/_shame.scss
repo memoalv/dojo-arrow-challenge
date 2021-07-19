@@ -6,6 +6,14 @@ $dimmed-background-color: #eff6f8;
   background-color: $dimmed-background-color;
 }
 
+.landing-info {
+  padding: $element-spacing * 6;
+}
+
+.form-field {
+  margin-bottom: $element-spacing;
+}
+
 .arrows-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
